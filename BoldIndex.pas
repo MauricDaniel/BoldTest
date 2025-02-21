@@ -183,6 +183,8 @@ type
     fItemCount: integer;
     fLastIndexForAny: integer;
     fTraverserList: TList;
+    procedure Grow;
+    procedure Shrink;
     procedure InsertEntry(Entry: PItemEntry);
     function MinimumBucketCount: integer;
     function MaximumBucketCount: integer;
@@ -216,7 +218,7 @@ type
     procedure ItemChanged(Item: TObject); override;
     function Remove(Item: TObject): boolean; override;
     procedure RemoveChanged(Item: TObject); override;
-    procedure Resize;
+    procedure Resize; deprecated 'Use Grow or Shrink instead'; // Mark old method as deprecated
     function CreateTraverser: TBoldIndexTraverser; override;
     property AutoResize: Boolean read fOptions.AutoResize write SetAutoResize;
     procedure AssertIndex;
@@ -405,6 +407,95 @@ begin
   Inc(fItemCount);
 end;
 
+procedure TBoldHashIndex.Grow;
+var
+  OldBuckets: array of PItemEntry;
+  OldCount, NewCount, i: Integer;
+  Current, Next: PItemEntry;
+begin
+  if fOptions.IsResizing then Exit;
+  OldCount := Length(fBucketArray);
+  if OldCount >= MaximumBucketCount then Exit;
+
+  try
+    fOptions.IsResizing := True;
+    if OldCount = 0 then
+      NewCount := MINIMUMHASHBUCKETS
+    else
+      NewCount := OldCount * 2;
+    if NewCount > MaximumBucketCount then
+      NewCount := MaximumBucketCount;
+
+    // Copy old buckets to a new array
+    SetLength(OldBuckets, OldCount);
+    for i := 0 to OldCount - 1 do
+      OldBuckets[i] := fBucketArray[i];
+
+    // Resize fBucketArray and clear it
+    SetLength(fBucketArray, NewCount);
+    for i := 0 to NewCount - 1 do
+      fBucketArray[i] := nil;
+    fItemCount := 0;
+
+    // Rehash existing entries
+    for i := 0 to OldCount - 1 do
+    begin
+      Current := OldBuckets[i];
+      while Assigned(Current) do
+      begin
+        Next := Current.Next;
+        InsertEntry(Current);
+        Current := Next;
+      end;
+    end;
+  finally
+    fOptions.IsResizing := False;
+  end;
+end;
+
+procedure TBoldHashIndex.Shrink;
+var
+  OldBuckets: array of PItemEntry;
+  OldCount, NewCount, i: Integer;
+  Current, Next: PItemEntry;
+begin
+  if fOptions.IsResizing or (TraverserCount > 0) then Exit;
+  OldCount := Length(fBucketArray);
+  if OldCount <= MinimumBucketCount then Exit;
+
+  try
+    fOptions.IsResizing := True;
+    NewCount := OldCount div 2;
+    if NewCount < MinimumBucketCount then
+      NewCount := MinimumBucketCount;
+
+    // Copy old buckets to a new array
+    SetLength(OldBuckets, OldCount);
+    for i := 0 to OldCount - 1 do
+      OldBuckets[i] := fBucketArray[i];
+
+    // Resize fBucketArray and clear it
+    SetLength(fBucketArray, NewCount);
+    for i := 0 to NewCount - 1 do
+      fBucketArray[i] := nil;
+    fItemCount := 0;
+
+    // Rehash existing entries
+    for i := 0 to OldCount - 1 do
+    begin
+      Current := OldBuckets[i];
+      while Assigned(Current) do
+      begin
+        Next := Current.Next;
+        InsertEntry(Current);
+        Current := Next;
+      end;
+    end;
+  finally
+    fOptions.IsResizing := False;
+  end;
+end;
+
 procedure TBoldHashIndex.Resize;
 var
   TempChain: PItemEntry;
@@ -457,54 +548,50 @@ begin
   end;
 end;
 
-function TBoldHashIndex.Remove(Item: TObject): boolean;
+function TBoldHashIndex.Remove(Item: TObject): Boolean;
 var
   Pre: PPItemEntry;
   ToBeRemoved: PItemEntry;
-  i: integer;
+  i: Integer;
 begin
-  result := false;
-  if Length(fBucketArray) = 0 then
-    exit;
+  Result := False;
+  if Length(fBucketArray) = 0 then Exit;
   Pre := @(fBucketArray[IndexForHash(HashItem(Item))]);
   while Assigned(Pre^) do
   begin
     if Pre^.Item = Item then
     begin
-      for I := 0 to TraverserCount - 1 do
+      for i := 0 to TraverserCount - 1 do
         Traversers[i].ItemDestroyed(Item);
       ToBeRemoved := Pre^;
       Pre^ := ToBeRemoved.Next;
-      ToBeRemoved.next := nil;
+      ToBeRemoved.Next := nil;
       ReturnItemEntry(ToBeRemoved);
       Dec(fItemCount);
-      result := true;
-      break;
+      Result := True;
+      if AutoResize and (fItemCount div AVERAGEBUCKETLENGTH < Length(fBucketArray) div 4) then
+        Shrink; // Trigger shrink when load factor drops below 0.25
+      Break;
     end
     else
       Pre := @Pre^.Next;
   end;
-  if Result and AutoResize then
-    Resize;
 end;
 
 procedure TBoldHashIndex.Add(Item: TObject);
 var
   NewEntry: PItemEntry;
 begin
-  if assigned(item) then
+  if Assigned(Item) then
   begin
     if Length(fBucketArray) = 0 then
-    begin
-      Resize;
-      Assert(Length(fBucketArray) > 0);
-    end;
+      Grow
+    else if (fItemCount div AVERAGEBUCKETLENGTH) > Length(fBucketArray) then
+      Grow; // Trigger growth when load factor exceeds 1
     NewEntry := G_HashIndexItemEntryRecHandler.GetRec;
     NewEntry.Item := Item;
     InsertEntry(NewEntry);
   end;
-  if AutoResize then
-    Resize;
 end;
 
 function TBoldHashIndex.Find(const Key): TObject;
