@@ -1,0 +1,405 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ECC2A0AF-00DC-4FEE-843F-B020EC7547D9}</ProjectGuid>
+        <MainSource>Bold.dpk</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Package</AppType>
+        <FrameworkType>VCL</FrameworkType>
+        <ProjectVersion>19.5</ProjectVersion>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <DCC_E>false</DCC_E>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
+        <GenDll>true</GenDll>
+        <GenPackage>true</GenPackage>
+        <SanitizedProjectName>Bold</SanitizedProjectName>
+        <DCC_Description>Bold 5.0 for Delphi</DCC_Description>
+        <DllSuffix>250</DllSuffix>
+        <DesignOnlyPackage>true</DesignOnlyPackage>
+        <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;DUnitX.Loggers.GUI;Winapi;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=;CFBundleName=</VerInfo_Keys>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_RangeChecking>true</DCC_RangeChecking>
+        <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="vcl.dcp"/>
+        <DCCReference Include="vcldb.dcp"/>
+        <DCCReference Include="DesignIDE.dcp"/>
+        <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="BoldSystem.pas"/>
+        <DCCReference Include="BoldAttributes.pas"/>
+        <DCCReference Include="BoldDerivedValueSet.pas"/>
+        <DCCReference Include="BoldDomainElement.pas"/>
+        <DCCReference Include="BoldElementList.pas"/>
+        <DCCReference Include="BoldExternalObjectSpaceEventHandler.pas"/>
+        <DCCReference Include="BoldLinks.pas"/>
+        <DCCReference Include="BoldMLAttributes.pas"/>
+        <DCCReference Include="BoldObjectListControllers.pas"/>
+        <DCCReference Include="BoldObjectSpaceLists.pas"/>
+        <DCCReference Include="BoldOptimisticLockingSupport.pas"/>
+        <DCCReference Include="BoldSystemOldValuehandler.pas"/>
+        <DCCReference Include="BoldSystemPersistenceHandler.pas"/>
+        <DCCReference Include="BoldTypeList.pas"/>
+        <DCCReference Include="BoldCoreConsts.pas"/>
+        <DCCReference Include="BoldElements.pas"/>
+        <DCCReference Include="BoldMetaElementList.pas"/>
+        <DCCReference Include="BoldComponentValidatorIDE.pas"/>
+        <DCCReference Include="BoldExternalObjectSpaceEventHandlerReg.pas"/>
+        <DCCReference Include="BoldWSimpleMenuWizard.pas"/>
+        <DCCReference Include="BoldAttributeWizard.pas"/>
+        <DCCReference Include="BoldOTACodeGen.pas"/>
+        <DCCReference Include="BoldWAClassInfo.pas"/>
+        <DCCReference Include="BoldWACustomAttr.pas"/>
+        <DCCReference Include="BoldWACustomAttrForm1.pas"/>
+        <DCCReference Include="BoldWAdatamodule.pas"/>
+        <DCCReference Include="BoldWAdmTemplates.pas"/>
+        <DCCReference Include="BoldWAInputFormUnit.pas"/>
+        <DCCReference Include="BoldWAInterfaces.pas"/>
+        <DCCReference Include="BoldWAMainForm.pas"/>
+        <DCCReference Include="BoldWAMethodInfo.pas"/>
+        <DCCReference Include="BoldWAStringGridManager.pas"/>
+        <DCCReference Include="BoldWASubClassForm1.pas"/>
+        <DCCReference Include="BoldWAValueSetDlg.pas"/>
+        <DCCReference Include="BoldWAValueSetForm1.pas"/>
+        <DCCReference Include="BoldVclUtils.pas"/>
+        <DCCReference Include="BoldWCodeInformer.pas"/>
+        <DCCReference Include="BoldWProjectWizard.pas"/>
+        <DCCReference Include="BoldWScanner.pas"/>
+        <DCCReference Include="BoldUndoInterfaces.pas"/>
+        <DCCReference Include="BoldOcl.pas"/>
+        <DCCReference Include="BoldOclClasses.pas"/>
+        <DCCReference Include="BoldOclError.pas"/>
+        <DCCReference Include="BoldOclEvaluator.pas"/>
+        <DCCReference Include="BoldOclLightWeightNodeMaker.pas"/>
+        <DCCReference Include="BoldOclLightWeightNodes.pas"/>
+        <DCCReference Include="BoldOclRTDebug.pas"/>
+        <DCCReference Include="BoldOclSemantics.pas"/>
+        <DCCReference Include="BoldOclSymbolImplementations.pas"/>
+        <DCCReference Include="BoldORed.pas"/>
+        <DCCReference Include="BoldRegularExpression.pas"/>
+        <DCCReference Include="BoldSSExcept.pas"/>
+        <DCCReference Include="BoldSSLexU.pas"/>
+        <DCCReference Include="BoldSSYaccU.pas"/>
+        <DCCReference Include="BoldLockHandler.pas"/>
+        <DCCReference Include="BoldLockHolder.pas"/>
+        <DCCReference Include="BoldLockRegions.pas"/>
+        <DCCReference Include="BoldRegionDefinitionParser.pas"/>
+        <DCCReference Include="BoldRegionDefinitions.pas"/>
+        <DCCReference Include="BoldGeneratedCodeDictionary.pas"/>
+        <DCCReference Include="BoldMemberTypeDictionary.pas"/>
+        <DCCReference Include="BoldSystemRT.pas"/>
+        <DCCReference Include="BoldUndoHandler.pas"/>
+        <DCCReference Include="BoldUnloader.pas"/>
+        <DCCReference Include="BoldComponentValidator.pas"/>
+        <DCCReference Include="BoldOCLGraphicRTDebug.pas"/>
+        <DCCReference Include="BoldOclPropEditor.pas"/>
+        <DCCReference Include="BoldTypeNameSelector.pas"/>
+        <DCCReference Include="BoldClient.pas"/>
+        <DCCReference Include="BoldServer.pas"/>
+        <DCCReference Include="BoldClientHandles.pas"/>
+        <DCCReference Include="BoldServerHandles.pas"/>
+        <DCCReference Include="BoldAggeregates.pas"/>
+        <DCCReference Include="BoldBase.pas"/>
+        <DCCReference Include="BoldCommonConst.pas"/>
+        <DCCReference Include="BoldContainers.pas"/>
+        <DCCReference Include="BoldDefs.pas"/>
+        <DCCReference Include="BoldStreams.pas"/>
+        <DCCReference Include="BoldThreadSafeQueue.pas"/>
+        <DCCReference Include="BoldEnvironment.pas"/>
+        <DCCReference Include="BoldEnvironmentIDE.pas"/>
+        <DCCReference Include="BoldEnvironmentVCL.pas"/>
+        <DCCReference Include="BoldHandle.pas"/>
+        <DCCReference Include="BoldDataBlock.pas"/>
+        <DCCReference Include="BoldAbstractPropertyEditors.pas"/>
+        <DCCReference Include="BoldDefsDT.pas"/>
+        <DCCReference Include="BoldExpert.pas"/>
+        <DCCReference Include="BoldExpertMenus.pas"/>
+        <DCCReference Include="BoldIDEConsts.pas"/>
+        <DCCReference Include="BoldIDEMenus.pas"/>
+        <DCCReference Include="BoldIDESupport.pas"/>
+        <DCCReference Include="BoldModelAwareComponentEditor.pas"/>
+        <DCCReference Include="BoldPropertyEditors.pas"/>
+        <DCCReference Include="BoldReg.pas"/>
+        <DCCReference Include="BoldTextStream.pas"/>
+        <DCCReference Include="BoldLogForm.pas"/>
+        <DCCReference Include="BoldLogHandler.pas"/>
+        <DCCReference Include="BoldLogHandlerForm.pas"/>
+        <DCCReference Include="BoldLogHandlerSimple.pas"/>
+        <DCCReference Include="BoldLogReceiverInterface.pas"/>
+        <DCCReference Include="BoldSmallLogFrame.pas"/>
+        <DCCReference Include="BoldThreadSafeLog.pas"/>
+        <DCCReference Include="BoldAbstractDequeuer.pas"/>
+        <DCCReference Include="BoldEventQueue.pas"/>
+        <DCCReference Include="BoldQueue.pas"/>
+        <DCCReference Include="BoldSOAP_TLB.pas"/>
+        <DCCReference Include="BoldXMLRequests.pas"/>
+        <DCCReference Include="BoldDeriver.pas"/>
+        <DCCReference Include="BoldSubscribableCollection.pas"/>
+        <DCCReference Include="BoldSubscription.pas"/>
+        <DCCReference Include="BoldBase64.pas"/>
+        <DCCReference Include="BoldCollections.pas"/>
+        <DCCReference Include="BoldCommonBitmaps.pas"/>
+        <DCCReference Include="BoldControlPackDefs.pas"/>
+        <DCCReference Include="BoldControlsDefs.pas"/>
+        <DCCReference Include="BoldDirectoryTraverser.pas"/>
+        <DCCReference Include="BoldExternalizedReferences.pas"/>
+        <DCCReference Include="BoldFileHandler.pas"/>
+        <DCCReference Include="BoldGuard.pas"/>
+        <DCCReference Include="BoldGUIDUtils.pas"/>
+        <DCCReference Include="BoldHashIndexes.pas"/>
+        <DCCReference Include="BoldIndex.pas"/>
+        <DCCReference Include="BoldIndexableList.pas"/>
+        <DCCReference Include="BoldIsoDateTime.pas"/>
+        <DCCReference Include="BoldLoggableCriticalSection.pas"/>
+        <DCCReference Include="BoldMath.pas"/>
+        <DCCReference Include="BoldMemoryManager.pas"/>
+        <DCCReference Include="BoldNamedValueList.pas"/>
+        <DCCReference Include="BoldNavigatorDefs.pas"/>
+        <DCCReference Include="BoldPriorityQueue.pas"/>
+        <DCCReference Include="BoldRegistry.pas"/>
+        <DCCReference Include="BoldSorter.pas"/>
+        <DCCReference Include="BoldStringList.pas"/>
+        <DCCReference Include="BoldSupportConst.pas"/>
+        <DCCReference Include="BoldTemplateExpander.pas"/>
+        <DCCReference Include="BoldUtils.pas"/>
+        <DCCReference Include="BoldXMLStreaming.pas"/>
+        <DCCReference Include="BoldThread.pas"/>
+        <DCCReference Include="BoldDefaultTaggedValues.pas"/>
+        <DCCReference Include="BoldTaggedValueList.pas"/>
+        <DCCReference Include="BoldTaggedValueSupport.pas"/>
+        <DCCReference Include="BoldUMLTaggedValues.pas"/>
+        <DCCReference Include="BoldTemplate.pas"/>
+        <DCCReference Include="BoldUMLDelphiSupport.pas"/>
+        <DCCReference Include="BoldUMLTypes.pas"/>
+        <DCCReference Include="BoldCursorGuard.pas"/>
+        <DCCReference Include="BoldQueryUserDlg.pas"/>
+        <DCCReference Include="BoldAbstractLockManagerAdminHandle.pas"/>
+        <DCCReference Include="BoldAbstractLockManagerHandle.pas"/>
+        <DCCReference Include="BoldLockingDefs.pas"/>
+        <DCCReference Include="BoldFreeStandingValueFactories.pas"/>
+        <DCCReference Include="BoldFreeStandingValues.pas"/>
+        <DCCReference Include="FreeStandingValuesConst.pas"/>
+        <DCCReference Include="BoldActionDefs.pas"/>
+        <DCCReference Include="BoldActions.pas"/>
+        <DCCReference Include="BoldHandleAction.pas"/>
+        <DCCReference Include="BoldListActions.pas"/>
+        <DCCReference Include="BoldUndoActions.pas"/>
+        <DCCReference Include="BoldAbstractListHandle.pas"/>
+        <DCCReference Include="BoldCursorHandle.pas"/>
+        <DCCReference Include="BoldDerivedHandle.pas"/>
+        <DCCReference Include="BoldExpressionHandle.pas"/>
+        <DCCReference Include="BoldFilteredHandle.pas"/>
+        <DCCReference Include="BoldHandles.pas"/>
+        <DCCReference Include="BoldListHandle.pas"/>
+        <DCCReference Include="BoldOclRepository.pas"/>
+        <DCCReference Include="BoldOclVariables.pas"/>
+        <DCCReference Include="BoldPlaceableSubscriber.pas"/>
+        <DCCReference Include="BoldReferenceHandle.pas"/>
+        <DCCReference Include="BoldRootedHandles.pas"/>
+        <DCCReference Include="BoldSortedHandle.pas"/>
+        <DCCReference Include="BoldSQLHandle.pas"/>
+        <DCCReference Include="BoldSystemHandle.pas"/>
+        <DCCReference Include="BoldVariableDefinition.pas"/>
+        <DCCReference Include="BoldVariableHandle.pas"/>
+        <DCCReference Include="HandlesConst.pas"/>
+        <DCCReference Include="BoldHandlePropEditor.pas"/>
+        <DCCReference Include="BoldHandleReg.pas"/>
+        <DCCReference Include="BoldLockingReg.pas"/>
+        <DCCReference Include="BoldManipulatorReg.pas"/>
+        <DCCReference Include="BoldXMLReg.pas"/>
+        <DCCReference Include="BoldManipulators.pas"/>
+        <DCCReference Include="BoldLockingHandles.pas"/>
+        <DCCReference Include="BoldUnloaderHandle.pas"/>
+        <DCCReference Include="BoldXMLProducers.pas"/>
+        <DCCReference Include="BoldBld.pas"/>
+        <DCCReference Include="BoldGen.pas"/>
+        <DCCReference Include="BoldGeneratorTemplates.pas"/>
+        <DCCReference Include="BoldGeneratorTemplatesDelphi.pas"/>
+        <DCCReference Include="BoldMeta.pas"/>
+        <DCCReference Include="BoldMetaSupport.pas"/>
+        <DCCReference Include="BoldMoldConsts.pas"/>
+        <DCCReference Include="BoldNameExpander.pas"/>
+        <DCCReference Include="BoldAbstractModel.pas"/>
+        <DCCReference Include="BoldTypeNameHandle.pas"/>
+        <DCCReference Include="BoldModelReg.pas"/>
+        <DCCReference Include="BoldTypeNameHandleReg.pas"/>
+        <DCCReference Include="BoldTypeNameDictionary.pas"/>
+        <DCCReference Include="BoldTypeNameEditor.pas"/>
+        <DCCReference Include="BoldAbstractSnooper.pas"/>
+        <DCCReference Include="BoldPersistenceController.pas"/>
+        <DCCReference Include="BoldPersistenceHandle.pas"/>
+        <DCCReference Include="BoldPersistenceHandlePassthrough.pas"/>
+        <DCCReference Include="BoldPersistenceHandlePTWithModel.pas"/>
+        <DCCReference Include="BoldPersistenceNotifier.pas"/>
+        <DCCReference Include="BoldUpdatePrecondition.pas"/>
+        <DCCReference Include="PersistenceConsts.pas"/>
+        <DCCReference Include="BoldAbstractDatabaseAdapter.pas"/>
+        <DCCReference Include="BoldAbstractPersistenceHandleDB.pas"/>
+        <DCCReference Include="BoldDBActions.pas"/>
+        <DCCReference Include="BoldDBInterfaces.pas"/>
+        <DCCReference Include="BoldPersistenceControllerDefault.pas"/>
+        <DCCReference Include="BoldPersistenceHandleDB_deprecated.pas"/>
+        <DCCReference Include="BoldPersistenceHandleDB.pas"/>
+        <DCCReference Include="BoldPersistenceHandleDBreg.pas"/>
+        <DCCReference Include="BoldPersistenceHandleFile.pas"/>
+        <DCCReference Include="BoldPersistenceHandleFileXML.pas"/>
+        <DCCReference Include="BoldHandlesPropagationReg.pas"/>
+        <DCCReference Include="BoldObjectUpgraderHandleReg.pas"/>
+        <DCCReference Include="BoldPersistenceHandleFileReg.pas"/>
+        <DCCReference Include="BoldPersistenceHandleReg.pas"/>
+        <DCCReference Include="BoldPersistenceHandleSystemReg.pas"/>
+        <DCCReference Include="BoldPersistenceNotifierReg.pas"/>
+        <DCCReference Include="BoldAbstractObjectUpgraderHandle.pas"/>
+        <DCCReference Include="BoldBatchUpgrader.pas"/>
+        <DCCReference Include="BoldObjectUpgrader.pas"/>
+        <DCCReference Include="BoldObjectUpgraderHandle.pas"/>
+        <DCCReference Include="BoldIDAdder.pas"/>
+        <DCCReference Include="BoldIDAdderHandle.pas"/>
+        <DCCReference Include="BoldListenerCOM.pas"/>
+        <DCCReference Include="BoldListenerHandle.pas"/>
+        <DCCReference Include="BoldListenerThread.pas"/>
+        <DCCReference Include="BoldPersistenceControllerPassthrough.pas"/>
+        <DCCReference Include="BoldSnooper.pas"/>
+        <DCCReference Include="BoldSnooperHandle.pas"/>
+        <DCCReference Include="BoldPersistenceControllerSystem.pas"/>
+        <DCCReference Include="BoldPersistenceHandleSystem.pas"/>
+        <DCCReference Include="BoldAbstractObjectUpgrader.pas"/>
+        <DCCReference Include="BoldPMapper.pas"/>
+        <DCCReference Include="BoldPMapperLists.pas"/>
+        <DCCReference Include="BoldPMappers.pas"/>
+        <DCCReference Include="BoldPMConsts.pas"/>
+        <DCCReference Include="BoldPSDescriptions.pas"/>
+        <DCCReference Include="BoldPSParams.pas"/>
+        <DCCReference Include="BoldDbEvolutor.pas"/>
+        <DCCReference Include="BoldDbEvolutorForm.pas"/>
+        <DCCReference Include="BoldDbEvolutorScript.pas"/>
+        <DCCReference Include="BoldCustomBlobMapper.pas"/>
+        <DCCReference Include="BoldMappingInfo.pas"/>
+        <DCCReference Include="BoldPMappersAttributeDefault.pas"/>
+        <DCCReference Include="BoldPMappersDefault.pas"/>
+        <DCCReference Include="BoldPMappersLinkDefault.pas"/>
+        <DCCReference Include="BoldPSDescriptionsDefault.pas"/>
+        <DCCReference Include="BoldPSParamsDefault.pas"/>
+        <DCCReference Include="BoldPMappersSQL.pas"/>
+        <DCCReference Include="BoldPSDescriptionsSQL.pas"/>
+        <DCCReference Include="BoldPSParamsSQL.pas"/>
+        <DCCReference Include="BoldSQLDatabaseConfig.pas"/>
+        <DCCReference Include="BoldSQLMappingInfo.pas"/>
+        <DCCReference Include="BoldSqlNodeMaker.pas"/>
+        <DCCReference Include="BoldSqlNodes.pas"/>
+        <DCCReference Include="BoldSqlNodesResolver.pas"/>
+        <DCCReference Include="BoldSQLQuery.pas"/>
+        <DCCReference Include="BoldSqlQueryGenerator.pas"/>
+        <DCCReference Include="BoldSqlSymbols.pas"/>
+        <DCCReference Include="BoldDbDataValidator.pas"/>
+        <DCCReference Include="BoldDbStructureValidator.pas"/>
+        <DCCReference Include="BoldDbValidator.pas"/>
+        <DCCReference Include="BoldAbstractPropagatorHandle.pas"/>
+        <DCCReference Include="BoldLockingSupportInterfaces_TLB.pas"/>
+        <DCCReference Include="BoldObjectMarshaler.pas"/>
+        <DCCReference Include="BoldPropagatorConstants.pas"/>
+        <DCCReference Include="BoldPropagatorGUIDs.pas"/>
+        <DCCReference Include="BoldPropagatorInterfaces_TLB.pas"/>
+        <DCCReference Include="PropagatorConsts.pas"/>
+        <DCCReference Include="BoldCondition.pas"/>
+        <DCCReference Include="BoldObjectSpaceExternalEvents.pas"/>
+        <DCCReference Include="BoldDefaultId.pas"/>
+        <DCCReference Include="BoldGlobalId.pas"/>
+        <DCCReference Include="BoldId.pas"/>
+        <DCCReference Include="BoldStringId.pas"/>
+        <DCCReference Include="ValueSpaceConst.pas"/>
+        <DCCReference Include="BoldValueInterfaces.pas"/>
+        <DCCReference Include="BoldValueSpaceInterfaces.pas"/>
+        <DCCReference Include="BoldDefaultStreamNames.pas"/>
+        <DCCReference Include="BoldDefaultXMLStreaming.pas"/>
+        <DCCReference Include="Bold_MSXML_TLB.pas"/>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Package</Borland.ProjectType>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">Bold.dpk</Source>
+                </Source>
+            </Delphi.Personality>
+            <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="iOSDevice32">False</Platform>
+                <Platform value="iOSSimulator">False</Platform>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+</Project>

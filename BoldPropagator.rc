@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------------------------------
+Variable used in this file:
+COMPANY_NAME_LONG
+COPYRIGHT_TEXT
+BUILD_COMMENT
+APP_VERSION
+APP_ICON
+MODULE_DESCRIPTION
+MODULE_FILENAME
+MODULE_NAME
+PRODUCT_NAME
+-------------------------------------------------------------------------------------- */
+
+MAINICON ICON LOADONCALL MOVEABLE DISCARDABLE IMPURE "BOLD.ICO"
+
+1 VERSIONINFO LOADONCALL MOVEABLE DISCARDABLE IMPURE
+FILEVERSION 4,0,0,19
+PRODUCTVERSION 4,0,0,19
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+{
+ BLOCK "StringFileInfo"
+ {
+  BLOCK "040904E4"
+  {
+   VALUE "CompanyName", "BoldSoft MDE AB\000"
+   VALUE "FileDescription", "\000"
+   VALUE "FileVersion", "4.0.0.19\000"
+   VALUE "InternalName", "\000"
+   VALUE "LegalCopyright", "Copyright (c) 1996-2002 BoldSoft MDE AB, Sweden\000"
+   VALUE "LegalTrademarks", "Bold is a registered trademark of BoldSoft MDE AB, Sweden. All other trademarks and registered trademarks are the property of their respective companies.\000"
+   VALUE "OriginalFilename", "\000"
+   VALUE "ProductName", "Bold for Delphi Enterprise R4.0-D6\000"
+   VALUE "ProductVersion", "4.0.0.19\000"
+   VALUE "Comments", "Timestamp: 2002-10-03 14:14:52. Release build.\000"
+  }
+
+ }
+
+ BLOCK "VarFileInfo"
+ {
+  VALUE "Translation", 1033, 1252
+ }
+
+}
+

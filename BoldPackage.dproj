@@ -1,0 +1,1394 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ED34E12E-891E-43DF-833B-5D2A1C6F3AFC}</ProjectGuid>
+        <MainSource>BoldPackage.dpk</MainSource>
+        <ProjectVersion>19.5</ProjectVersion>
+        <FrameworkType>VCL</FrameworkType>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Package</AppType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android' and '$(Base)'=='true') or '$(Base_Android)'!=''">
+        <Base_Android>true</Base_Android>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android64' and '$(Base)'=='true') or '$(Base_Android64)'!=''">
+        <Base_Android64>true</Base_Android64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+        <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_E>false</DCC_E>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+        <GenDll>true</GenDll>
+        <GenPackage>true</GenPackage>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
+        <SanitizedProjectName>BoldPackage</SanitizedProjectName>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Android)'!=''">
+        <DCC_CBuilderOutput>None</DCC_CBuilderOutput>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Android64)'!=''">
+        <DCC_CBuilderOutput>None</DCC_CBuilderOutput>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_RemoteDebug>true</DCC_RemoteDebug>
+        <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+        <DCC_RangeChecking>true</DCC_RangeChecking>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <DCC_RemoteDebug>false</DCC_RemoteDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="BoldCondition.pas"/>
+        <DCCReference Include="BoldObjectListControllers.pas"/>
+        <DCCReference Include="BoldSystem.pas"/>
+        <DCCReference Include="BoldPersistenceControllerSystem.pas"/>
+        <DCCReference Include="BoldSubscription.pas"/>
+        <DCCReference Include="BoldObjectUpgraderHandle.pas"/>
+        <DCCReference Include="BoldOclEvaluator.pas"/>
+        <DCCReference Include="BoldPersistenceController.pas"/>
+        <DCCReference Include="BoldPersistenceControllerDefault.pas"/>
+        <DCCReference Include="BoldPersistenceHandlePassthrough.pas"/>
+        <DCCReference Include="BoldPMappers.pas"/>
+        <DCCReference Include="BoldPMappersDefault.pas"/>
+        <DCCReference Include="BoldReferenceHandle.pas"/>
+        <DCCReference Include="BoldSQLMappingInfo.pas"/>
+        <DCCReference Include="BoldSystemMerger.pas"/>
+        <DCCReference Include="BoldSystemPersistenceHandler.pas"/>
+        <DCCReference Include="BoldTreeView.pas"/>
+        <DCCReference Include="BoldTypeNameDictionary.pas"/>
+        <DCCReference Include="BoldUMLModelLink.pas"/>
+        <DCCReference Include="BoldUMLModelSupport.pas"/>
+        <DCCReference Include="BoldUndoHandler.pas"/>
+        <DCCReference Include="BoldUnloaderHandle.pas"/>
+        <DCCReference Include="BoldAbstractDatabaseAdapter.pas"/>
+        <DCCReference Include="BoldAttributes.pas"/>
+        <DCCReference Include="BoldControlPack.pas"/>
+        <DCCReference Include="BoldDbDataValidator.pas"/>
+        <DCCReference Include="BoldDbEvolutor.pas"/>
+        <DCCReference Include="BoldDbEvolutorScript.pas"/>
+        <DCCReference Include="BoldDBInterfaces.pas"/>
+        <DCCReference Include="BoldDbStructureValidator.pas"/>
+        <DCCReference Include="BoldElements.pas"/>
+        <DCCReference Include="BoldFileLogger.pas"/>
+        <DCCReference Include="BoldFormSaver.pas"/>
+        <DCCReference Include="BoldFreeStandingValues.pas"/>
+        <DCCReference Include="BoldGrid.pas"/>
+        <DCCReference Include="BoldLinks.pas"/>
+        <DCCReference Include="BoldLogForm.pas">
+            <Form>BoldLogForm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldLogReceiverInterface.pas"/>
+        <DCCReference Include="BoldMappingInfo.pas"/>
+        <DCCReference Include="BoldMeta.pas"/>
+        <DCCReference Include="BoldSqlSymbols.pas"/>
+        <DCCReference Include="BoldOclSymbolImplementations.pas"/>
+        <DCCReference Include="BoldOclVariables.pas"/>
+        <DCCReference Include="BoldObjectRepresentationJson.pas"/>
+        <DCCReference Include="BoldStreams.pas"/>
+        <DCCReference Include="BoldSqlQueryGenerator.pas"/>
+        <DCCReference Include="BoldSQLQuery.pas"/>
+        <DCCReference Include="BoldUtils.pas"/>
+        <DCCReference Include="BoldSSYaccU.pas"/>
+        <DCCReference Include="BoldSSLexU.pas"/>
+        <DCCReference Include="BoldSSExcept.pas"/>
+        <DCCReference Include="BoldSqlNodes.pas"/>
+        <DCCReference Include="BoldOcl.pas"/>
+        <DCCReference Include="BoldSQLDatabaseConfig.pas"/>
+        <DCCReference Include="BoldSqlNodesResolver.pas"/>
+        <DCCReference Include="BoldEnvironmentVCL.pas"/>
+        <DCCReference Include="BoldQueue.pas"/>
+        <DCCReference Include="BoldTemplateExpander.pas"/>
+        <DCCReference Include="BoldId.pas"/>
+        <DCCReference Include="RationalRose_TLB.pas"/>
+        <DCCReference Include="RationalRose98_TLB.pas"/>
+        <DCCReference Include="Bold_MSXML_TLB.pas"/>
+        <DCCReference Include="BoldAbstractComClientPersistenceHandles.pas"/>
+        <DCCReference Include="BoldAbstractComPersistenceControllerProxy.pas"/>
+        <DCCReference Include="BoldAbstractDequeuer.pas"/>
+        <DCCReference Include="BoldAbstractExternalPersistenceController.pas"/>
+        <DCCReference Include="BoldAbstractExternalPersistenceHandle.pas"/>
+        <DCCReference Include="BoldAbstractListHandle.pas"/>
+        <DCCReference Include="BoldAbstractLockManagerAdminHandle.pas"/>
+        <DCCReference Include="BoldAbstractLockManagerHandle.pas"/>
+        <DCCReference Include="BoldAbstractModel.pas"/>
+        <DCCReference Include="BoldAbstractModificationPropagator.pas"/>
+        <DCCReference Include="BoldAbstractObjectUpgrader.pas"/>
+        <DCCReference Include="BoldAbstractObjectUpgraderHandle.pas"/>
+        <DCCReference Include="BoldAbstractOutputQueueHandler.pas"/>
+        <DCCReference Include="BoldAbstractPartiallyExternalPC.pas"/>
+        <DCCReference Include="BoldAbstractPartiallyExternalPH.pas"/>
+        <DCCReference Include="BoldAbstractPersistenceHandleDB.pas"/>
+        <DCCReference Include="BoldAbstractPropagatorHandle.pas"/>
+        <DCCReference Include="BoldAbstractSnooper.pas"/>
+        <DCCReference Include="BoldAction.pas"/>
+        <DCCReference Include="BoldActionDefs.pas"/>
+        <DCCReference Include="BoldActions.pas"/>
+        <DCCReference Include="BoldAFP.pas"/>
+        <DCCReference Include="BoldAFPDefault.pas"/>
+        <DCCReference Include="BoldAFPPluggable.pas"/>
+        <DCCReference Include="BoldAFPUser.pas"/>
+        <DCCReference Include="BoldAggeregates.pas"/>
+        <DCCReference Include="BoldApartmentThread.pas"/>
+        <DCCReference Include="BoldAttributeWideString.pas"/>
+        <DCCReference Include="BoldBase.pas"/>
+        <DCCReference Include="BoldBase64.pas"/>
+        <DCCReference Include="BoldBatchUpgrader.pas"/>
+        <DCCReference Include="BoldBld.pas"/>
+        <DCCReference Include="BoldCaptionController.pas"/>
+        <DCCReference Include="BoldCheckBox.pas"/>
+        <DCCReference Include="BoldCheckboxStateControlPack.pas"/>
+        <DCCReference Include="BoldCheckListBox.pas"/>
+        <DCCReference Include="BoldClient.pas"/>
+        <DCCReference Include="BoldClientElementSupport.pas"/>
+        <DCCReference Include="BoldClientHandles.pas"/>
+        <DCCReference Include="BoldClientQueue.pas"/>
+        <DCCReference Include="BoldCollections.pas"/>
+        <DCCReference Include="BoldComboBox.pas"/>
+        <DCCReference Include="BoldCommonBitmaps.pas"/>
+        <DCCReference Include="BoldCommonConst.pas"/>
+        <DCCReference Include="BoldComponentValidator.pas"/>
+        <DCCReference Include="BoldConstraintValidator.pas"/>
+        <DCCReference Include="BoldContainers.pas"/>
+        <DCCReference Include="BoldControllerListControlPack.pas"/>
+        <DCCReference Include="BoldControlPackDefs.pas"/>
+        <DCCReference Include="BoldControlsDefs.pas"/>
+        <DCCReference Include="BoldCoreConsts.pas"/>
+        <DCCReference Include="BoldCursorGuard.pas"/>
+        <DCCReference Include="BoldCursorHandle.pas"/>
+        <DCCReference Include="BoldCustomBlobMapper.pas"/>
+        <DCCReference Include="BoldCustomCheckListBox.pas"/>
+        <DCCReference Include="BoldDatabaseAdapterFireDAC.pas"/>
+        <DCCReference Include="BoldDataBlock.pas"/>
+        <DCCReference Include="BoldDateTimeControlPack.pas"/>
+        <DCCReference Include="BoldDBActions.pas"/>
+        <DCCReference Include="BoldDbEvolutorForm.pas">
+            <Form>frmBoldDbEvolutor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldDbPlugins.pas"/>
+        <DCCReference Include="BoldDBQuery.pas"/>
+        <DCCReference Include="BoldDbValidator.pas"/>
+        <DCCReference Include="BoldDebugActions.pas"/>
+        <DCCReference Include="BoldDefaultId.pas"/>
+        <DCCReference Include="BoldDefaultStreamNames.pas"/>
+        <DCCReference Include="BoldDefaultTaggedValues.pas"/>
+        <DCCReference Include="BoldDefaultXMLStreaming.pas"/>
+        <DCCReference Include="BoldDefs.pas"/>
+        <DCCReference Include="BoldDefsDT.pas"/>
+        <DCCReference Include="BoldDerivationExpressionsEditor.pas">
+            <Form>frmBoldDerivationExpressionsEditor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldDerivedHandle.pas"/>
+        <DCCReference Include="BoldDerivedValueSet.pas"/>
+        <DCCReference Include="BoldDeriver.pas"/>
+        <DCCReference Include="BoldDirectoryTraverser.pas"/>
+        <DCCReference Include="BoldDomainElement.pas"/>
+        <DCCReference Include="BoldDragDropTarget.pas"/>
+        <DCCReference Include="BoldDragObject.pas"/>
+        <DCCReference Include="BoldDTDParser.pas"/>
+        <DCCReference Include="BoldEdit.pas"/>
+        <DCCReference Include="BoldEditOCLAction.pas"/>
+        <DCCReference Include="BoldElementHandleFollower.pas"/>
+        <DCCReference Include="BoldElementList.pas"/>
+        <DCCReference Include="BoldEnvironment.pas"/>
+        <DCCReference Include="BoldEventQueue.pas"/>
+        <DCCReference Include="BoldExceptionHandlers.pas"/>
+        <DCCReference Include="BoldExpressionHandle.pas"/>
+        <DCCReference Include="BoldExpressionSubscriber.pas"/>
+        <DCCReference Include="BoldExternalizedReferences.pas"/>
+        <DCCReference Include="BoldExternalObjectSpaceEventHandler.pas"/>
+        <DCCReference Include="BoldExternalPersistenceConfigItemDataSet.pas"/>
+        <DCCReference Include="BoldExternalPersistenceControllerConfig.pas"/>
+        <DCCReference Include="BoldExternalPersistenceControllerDataSet.pas"/>
+        <DCCReference Include="BoldExternalPersistenceControllerEventDriven.pas"/>
+        <DCCReference Include="BoldExternalPersistenceControllerSQL.pas"/>
+        <DCCReference Include="BoldExternalPersistenceHandleDataSet.pas"/>
+        <DCCReference Include="BoldExternalPersistenceHandleEventDriven.pas"/>
+        <DCCReference Include="BoldExternalPersistenceHandleSQL.pas"/>
+        <DCCReference Include="BoldExternalPersistenceSupport.pas"/>
+        <DCCReference Include="BoldFileHandler.pas"/>
+        <DCCReference Include="BoldFilteredHandle.pas"/>
+        <DCCReference Include="BoldFireDACConsts.pas"/>
+        <DCCReference Include="BoldFireDACInterfaces.pas"/>
+        <DCCReference Include="BoldFloatControlPack.pas"/>
+        <DCCReference Include="BoldFormSaverActions.pas"/>
+        <DCCReference Include="BoldFreeStandingValueFactories.pas"/>
+        <DCCReference Include="BoldGen.pas"/>
+        <DCCReference Include="BoldGeneratedCodeDictionary.pas"/>
+        <DCCReference Include="BoldGeneratorTemplates.pas"/>
+        <DCCReference Include="BoldGeneratorTemplatesCPP.pas">
+            <Form>BoldGeneratorTemplateCPPDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldGeneratorTemplatesDelphi.pas">
+            <Form>BoldGeneratorTemplatesDelphiDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldGenericListControlPack.pas"/>
+        <DCCReference Include="BoldGettingStartedForm.pas">
+            <Form>FGettingStarted</Form>
+        </DCCReference>
+        <DCCReference Include="BoldGlobalId.pas"/>
+        <DCCReference Include="BoldGridRTColEditor.pas">
+            <Form>frmRTColEditor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldGuard.pas"/>
+        <DCCReference Include="BoldGUI.pas"/>
+        <DCCReference Include="BoldGUIDUtils.pas"/>
+        <DCCReference Include="BoldGuiResourceStrings.pas"/>
+        <DCCReference Include="BoldHandle.pas"/>
+        <DCCReference Include="BoldHandleAction.pas"/>
+        <DCCReference Include="BoldHandles.pas"/>
+        <DCCReference Include="BoldHashIndexes.pas"/>
+        <DCCReference Include="BoldHTTPClientPersistenceHandle.pas"/>
+        <DCCReference Include="BoldHTTPPersistenceControllerClient.pas"/>
+        <DCCReference Include="BoldHTTPServerPersistenceHandlePassthrough.pas"/>
+        <DCCReference Include="BoldIDAdder.pas"/>
+        <DCCReference Include="BoldIDAdderHandle.pas"/>
+        <DCCReference Include="BoldIDCompressor.pas"/>
+        <DCCReference Include="BoldImage.pas"/>
+        <DCCReference Include="BoldImageBitmap.pas"/>
+        <DCCReference Include="BoldImageJPEG.pas"/>
+        <DCCReference Include="BoldIndex.pas"/>
+        <DCCReference Include="BoldIndexableList.pas"/>
+        <DCCReference Include="BoldIndexableLoadedObjectsHandle.pas"/>
+        <DCCReference Include="BoldIndexableLoadedObjectsList.pas"/>
+        <DCCReference Include="BoldIndexCollection.pas"/>
+        <DCCReference Include="BoldIndexList.pas"/>
+        <DCCReference Include="BoldIsoDateTime.pas"/>
+        <DCCReference Include="BoldJson.pas"/>
+        <DCCReference Include="BoldJSONWriter.pas"/>
+        <DCCReference Include="BoldLabel.pas"/>
+        <DCCReference Include="BoldLicenseTextForm.pas">
+            <Form>frmLicenseText</Form>
+        </DCCReference>
+        <DCCReference Include="BoldLinuxWinCompatibility.pas"/>
+        <DCCReference Include="BoldListActions.pas"/>
+        <DCCReference Include="BoldListBox.pas"/>
+        <DCCReference Include="BoldListControlPack.pas"/>
+        <DCCReference Include="BoldListHandle.pas"/>
+        <DCCReference Include="BoldListHandleFollower.pas"/>
+        <DCCReference Include="BoldListListControlPack.pas"/>
+        <DCCReference Include="BoldLockHandler.pas"/>
+        <DCCReference Include="BoldLockHolder.pas"/>
+        <DCCReference Include="BoldLockingDefs.pas"/>
+        <DCCReference Include="BoldLockingHandles.pas"/>
+        <DCCReference Include="BoldLockingSupportInterfaces_TLB.pas"/>
+        <DCCReference Include="BoldLockList.pas"/>
+        <DCCReference Include="BoldLockManager.pas"/>
+        <DCCReference Include="BoldLockManagerAdmin.pas"/>
+        <DCCReference Include="BoldLockManagerAdminExportHandle.pas"/>
+        <DCCReference Include="BoldLockManagerExportHandle.pas"/>
+        <DCCReference Include="BoldLockRegions.pas"/>
+        <DCCReference Include="BoldLockUtils.pas"/>
+        <DCCReference Include="BoldLoggableCriticalSection.pas"/>
+        <DCCReference Include="BoldLogHandler.pas"/>
+        <DCCReference Include="BoldLogHandlerForm.pas"/>
+        <DCCReference Include="BoldLogHandlerSimple.pas"/>
+        <DCCReference Include="BoldManipulators.pas"/>
+        <DCCReference Include="BoldMath.pas"/>
+        <DCCReference Include="BoldMD5.pas"/>
+        <DCCReference Include="BoldMemberTypeDictionary.pas"/>
+        <DCCReference Include="BoldMemo.pas"/>
+        <DCCReference Include="BoldMemoryManager.pas"/>
+        <DCCReference Include="BoldMetaElementList.pas"/>
+        <DCCReference Include="BoldMetaSupport.pas"/>
+        <DCCReference Include="BoldMLAttributes.pas"/>
+        <DCCReference Include="BoldMLRenderers.pas"/>
+        <DCCReference Include="BoldMMTVDefGen.pas"/>
+        <DCCReference Include="BoldMMTVDefGenGUI.pas">
+            <Form>Form1</Form>
+        </DCCReference>
+        <DCCReference Include="BoldMMTVDefs.pas"/>
+        <DCCReference Include="BoldMMTVMemo.pas">
+            <Form>frmMemoEdit</Form>
+        </DCCReference>
+        <DCCReference Include="BoldModel.pas"/>
+        <DCCReference Include="BoldModelLoader.pas"/>
+        <DCCReference Include="BoldModelMaker_TLB.pas"/>
+        <DCCReference Include="BoldModelOCLValidatorPlugIn.pas"/>
+        <DCCReference Include="BoldModelSencha.pas"/>
+        <DCCReference Include="BoldMOFInterfaces.pas"/>
+        <DCCReference Include="BoldMoldConsts.pas"/>
+        <DCCReference Include="BoldNamedValueList.pas"/>
+        <DCCReference Include="BoldNameExpander.pas"/>
+        <DCCReference Include="BoldNavigator.pas"/>
+        <DCCReference Include="BoldNavigatorDefs.pas"/>
+        <DCCReference Include="BoldNewObjectInterceptor.pas"/>
+        <DCCReference Include="BoldNodeControlPack.pas"/>
+        <DCCReference Include="BoldNumericControlPack.pas"/>
+        <DCCReference Include="BoldObjectMarshaler.pas"/>
+        <DCCReference Include="BoldObjectRetriever.pas"/>
+        <DCCReference Include="BoldObjectSpaceExternalEvents.pas"/>
+        <DCCReference Include="BoldObjectSpaceLists.pas"/>
+        <DCCReference Include="BoldObjectUpgrader.pas"/>
+        <DCCReference Include="BoldOclClasses.pas"/>
+        <DCCReference Include="BoldOclError.pas"/>
+        <DCCReference Include="BoldOCLGraphicRTDebug.pas"/>
+        <DCCReference Include="BoldOclLightWeightNodeMaker.pas"/>
+        <DCCReference Include="BoldOclLightWeightNodes.pas"/>
+        <DCCReference Include="BoldOclPropEditor.pas">
+            <Form>BoldOclPropEditForm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldOclRepository.pas"/>
+        <DCCReference Include="BoldOclRTDebug.pas"/>
+        <DCCReference Include="BoldOclSemantics.pas"/>
+        <DCCReference Include="BoldOLLEController.pas"/>
+        <DCCReference Include="BoldOLLEDistributableObjectHandlers.pas"/>
+        <DCCReference Include="BoldOLLEdmmain.pas">
+            <Form>dmOLL</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldOLLEHandles.pas"/>
+        <DCCReference Include="BoldOptimisticLockingSupport.pas"/>
+        <DCCReference Include="BoldORed.pas"/>
+        <DCCReference Include="BoldOSSMessage.pas"/>
+        <DCCReference Include="BoldPageControl.pas"/>
+        <DCCReference Include="BoldPerformanceCounter.pas"/>
+        <DCCReference Include="BoldPersistenceControllerPassthrough.pas"/>
+        <DCCReference Include="BoldPersistenceControllerSOAPAdapterCore.pas"/>
+        <DCCReference Include="BoldPersistenceHandle.pas"/>
+        <DCCReference Include="BoldPersistenceHandleDB.pas"/>
+        <DCCReference Include="BoldPersistenceHandleFile.pas"/>
+        <DCCReference Include="BoldPersistenceHandleFileXML.pas"/>
+        <DCCReference Include="BoldPersistenceHandlePTWithModel.pas"/>
+        <DCCReference Include="BoldPersistenceHandleSystem.pas"/>
+        <DCCReference Include="BoldPersistenceNotifier.pas"/>
+        <DCCReference Include="BoldPersistenceOperationXMLStreaming.pas"/>
+        <DCCReference Include="BoldPlaceableListSubscriber.pas"/>
+        <DCCReference Include="BoldPlaceableSubscriber.pas"/>
+        <DCCReference Include="BoldPMapper.pas"/>
+        <DCCReference Include="BoldPMapperLists.pas"/>
+        <DCCReference Include="BoldPMappersAttributeDefault.pas"/>
+        <DCCReference Include="BoldPMappersLinkDefault.pas"/>
+        <DCCReference Include="BoldPMappersSQL.pas"/>
+        <DCCReference Include="BoldPMConsts.pas"/>
+        <DCCReference Include="BoldPMWideString.pas"/>
+        <DCCReference Include="BoldPriorityQueue.pas"/>
+        <DCCReference Include="BoldProgressBar.pas"/>
+        <DCCReference Include="BoldPropertiesController.pas"/>
+        <DCCReference Include="BoldPropertyMapper.pas"/>
+        <DCCReference Include="BoldPSDescriptions.pas"/>
+        <DCCReference Include="BoldPSDescriptionsDefault.pas"/>
+        <DCCReference Include="BoldPSDescriptionsSQL.pas"/>
+        <DCCReference Include="BoldPSParams.pas"/>
+        <DCCReference Include="BoldPSParamsDefault.pas"/>
+        <DCCReference Include="BoldPSParamsSQL.pas"/>
+        <DCCReference Include="BoldQueryUserDlg.pas">
+            <Form>frmBoldQueryUser</Form>
+        </DCCReference>
+        <DCCReference Include="BoldRawSQLHandle.pas"/>
+        <DCCReference Include="BoldRegionDefinitionParser.pas"/>
+        <DCCReference Include="BoldRegionDefinitions.pas"/>
+        <DCCReference Include="BoldRegistry.pas"/>
+        <DCCReference Include="BoldRegularExpression.pas"/>
+        <DCCReference Include="BoldRev.pas"/>
+        <DCCReference Include="BoldRichEdit.pas"/>
+        <DCCReference Include="BoldRootedHandles.pas"/>
+        <DCCReference Include="BoldRose98ptyCreator.pas"/>
+        <DCCReference Include="BoldRose98Support.pas"/>
+        <DCCReference Include="BoldRose98TaggedValues.pas"/>
+        <DCCReference Include="BoldRose2000Support.pas"/>
+        <DCCReference Include="BoldSelectionListBox.pas"/>
+        <DCCReference Include="BoldServerHandles.pas"/>
+        <DCCReference Include="BoldServerHandlesDataMod.pas">
+            <Form>dmServerHandles</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldSharedStrings.pas"/>
+        <DCCReference Include="BoldSmallLogFrame.pas">
+            <Form>BoldLogFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldSnooper.pas"/>
+        <DCCReference Include="BoldSnooperHandle.pas"/>
+        <DCCReference Include="BoldSOAP_TLB.pas"/>
+        <DCCReference Include="BoldSOAP2_TLB.pas"/>
+        <DCCReference Include="BoldSOAPClientPersistenceHandles.pas"/>
+        <DCCReference Include="BoldSOAPPersistenceControllerProxy.pas"/>
+        <DCCReference Include="BoldSOAPPersistenceControllerStub.pas"/>
+        <DCCReference Include="BoldSOAPServerPersistenceHandles.pas"/>
+        <DCCReference Include="BoldSortedHandle.pas"/>
+        <DCCReference Include="BoldSorter.pas"/>
+        <DCCReference Include="BoldSQLHandle.pas"/>
+        <DCCReference Include="BoldSqlNodeMaker.pas"/>
+        <DCCReference Include="BoldStringControlPack.pas"/>
+        <DCCReference Include="BoldStringId.pas"/>
+        <DCCReference Include="BoldStringList.pas"/>
+        <DCCReference Include="BoldStringsPropertyController.pas"/>
+        <DCCReference Include="BoldSubscribableCollection.pas"/>
+        <DCCReference Include="BoldSynchronizationUtils.pas"/>
+        <DCCReference Include="BoldSystemComparer.pas"/>
+        <DCCReference Include="BoldSystemDebuggerForm.pas">
+            <Form>BoldSystemDebuggerFrm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldSystemHandle.pas"/>
+        <DCCReference Include="BoldSystemOldValuehandler.pas"/>
+        <DCCReference Include="BoldSystemRT.pas"/>
+        <DCCReference Include="BoldTaggedValueList.pas"/>
+        <DCCReference Include="BoldTaggedValueSupport.pas"/>
+        <DCCReference Include="BoldTemplate.pas"/>
+        <DCCReference Include="BoldThread.pas"/>
+        <DCCReference Include="BoldThreadedComObjectFactory.pas"/>
+        <DCCReference Include="BoldThreadSafeLog.pas"/>
+        <DCCReference Include="BoldThreadSafeQueue.pas"/>
+        <DCCReference Include="BoldTrackBar.pas"/>
+        <DCCReference Include="BoldTreeViewConfig.pas"/>
+        <DCCReference Include="BoldTypeList.pas"/>
+        <DCCReference Include="BoldTypeNameEditor.pas">
+            <Form>BoldTypeNameEditorForm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldTypeNameHandle.pas"/>
+        <DCCReference Include="BoldTypeNameSelector.pas">
+            <Form>frmBoldTypeNameSelector</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLAbstractModelValidator.pas"/>
+        <DCCReference Include="BoldUMLAddTV.pas">
+            <Form>frmBoldUMLAddTV</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLAttributes.pas"/>
+        <DCCReference Include="BoldUMLBldLink.pas"/>
+        <DCCReference Include="BoldUMLConstraintEditor.pas">
+            <Form>frmBoldUMLConstraintEditor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLDelphiSupport.pas"/>
+        <DCCReference Include="BoldUMLDTDData.pas">
+            <Form>dmUML13DTD</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldUMLMMLink.pas"/>
+        <DCCReference Include="BoldUMLModel.pas"/>
+        <DCCReference Include="BoldUMLModelConverter.pas"/>
+        <DCCReference Include="BoldUMLModelDataModule.pas">
+            <Form>dmModelEdit</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldUMLModelEdit.pas"/>
+        <DCCReference Include="BoldUMLModelEditForm.pas">
+            <Form>BoldModelEditFrm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLModelEditorHandlesDataModule.pas">
+            <Form>dmBoldUMLModelEditorHandles</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldUMLModelEditPlugIn.pas"/>
+        <DCCReference Include="BoldUMLModelLinkSupport.pas"/>
+        <DCCReference Include="BoldUMLModelMOFAdapters.pas"/>
+        <DCCReference Include="BoldUMLModelPersistenceDataModule.pas"/>
+        <DCCReference Include="BoldUMLModelStreamer.pas"/>
+        <DCCReference Include="BoldUMLModelUpdater.pas"/>
+        <DCCReference Include="BoldUMLModelValidationForm.pas">
+            <Form>frmValidation</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLModelValidator.pas"/>
+        <DCCReference Include="BoldUMLNameTrimmer.pas"/>
+        <DCCReference Include="BoldUMLOCLEditor.pas"/>
+        <DCCReference Include="BoldUMLOCLValidator.pas"/>
+        <DCCReference Include="BoldUMLPluginCallBacks.pas"/>
+        <DCCReference Include="BoldUMLPlugins.pas"/>
+        <DCCReference Include="BoldUMLRose98Link.pas"/>
+        <DCCReference Include="BoldUMLRose98MappingUtils.pas"/>
+        <DCCReference Include="BoldUMLRose98Support.pas"/>
+        <DCCReference Include="BoldUMLTaggedValues.pas"/>
+        <DCCReference Include="BoldUMLTaggedValuesEditor.pas">
+            <Form>frmBoldUMLTaggedValuesEditor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLTypes.pas"/>
+        <DCCReference Include="BoldUMLUsesEditorForm.pas">
+            <Form>frmUsesEditor</Form>
+        </DCCReference>
+        <DCCReference Include="BoldUMLUtils.pas"/>
+        <DCCReference Include="BoldUMLXMICommon.pas"/>
+        <DCCReference Include="BoldUMLXMIImporter.pas"/>
+        <DCCReference Include="BoldUMLXMILink.pas"/>
+        <DCCReference Include="BoldUMLXMILinkSupport.pas"/>
+        <DCCReference Include="BoldUndoActions.pas"/>
+        <DCCReference Include="BoldUndoInterfaces.pas"/>
+        <DCCReference Include="BoldUnloader.pas"/>
+        <DCCReference Include="BoldUpdatePrecondition.pas"/>
+        <DCCReference Include="BoldURI.pas"/>
+        <DCCReference Include="BoldValueInterfaces.pas"/>
+        <DCCReference Include="BoldValueSpaceInterfaces.pas"/>
+        <DCCReference Include="BoldVariableDefinition.pas"/>
+        <DCCReference Include="BoldVariableHandle.pas"/>
+        <DCCReference Include="BoldVariantControlPack.pas"/>
+        <DCCReference Include="BoldVclUtils.pas"/>
+        <DCCReference Include="BoldVersionInfo.pas"/>
+        <DCCReference Include="BoldViewerControlPack.pas"/>
+        <DCCReference Include="BoldWAClassInfo.pas"/>
+        <DCCReference Include="BoldWACustomAttr.pas"/>
+        <DCCReference Include="BoldWACustomAttrForm1.pas">
+            <Form>CustomAttrForm1</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWAdmTemplates.pas">
+            <Form>attrdatamodule</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="BoldWAInputFormUnit.pas">
+            <Form>InputForm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWAInterfaces.pas"/>
+        <DCCReference Include="BoldWAMainForm.pas">
+            <Form>MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWAMethodInfo.pas"/>
+        <DCCReference Include="BoldWAStringGridManager.pas"/>
+        <DCCReference Include="BoldWASubClassForm1.pas">
+            <Form>SubClassForm1</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWAValueSetDlg.pas">
+            <Form>ValueSetDlg</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWAValueSetForm1.pas">
+            <Form>ValueSetForm1</Form>
+        </DCCReference>
+        <DCCReference Include="BoldWCodeInformer.pas"/>
+        <DCCReference Include="BoldWebConnection.pas"/>
+        <DCCReference Include="BoldWinINet.pas"/>
+        <DCCReference Include="BoldWinUtils.pas"/>
+        <DCCReference Include="BoldWScanner.pas"/>
+        <DCCReference Include="BoldXCVTreeView.pas"/>
+        <DCCReference Include="BoldXMI10Exporter.pas"/>
+        <DCCReference Include="BoldXMLDispatcher.pas"/>
+        <DCCReference Include="BoldXMLDispatcherVB.pas"/>
+        <DCCReference Include="BoldXMLProducers.pas"/>
+        <DCCReference Include="BoldXMLRequests.pas"/>
+        <DCCReference Include="BoldXMLStreaming.pas"/>
+        <DCCReference Include="DistributableInfo.pas"/>
+        <DCCReference Include="RationalRose2000_TLB.pas"/>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Package</Borland.ProjectType>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">BoldPackage.dpk</Source>
+                </Source>
+            </Delphi.Personality>
+            <Deployment Version="4">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\BoldPackage.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>BoldPackage.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployClass Name="AdditionalDebugSymbols">
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClasses">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidFileProvider">
+                    <Platform Name="Android">
+                        <RemoteDir>res\xml</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\xml</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidGDBServer">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiv7aFile">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeMipsFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashImageDef">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStyles">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStylesV21">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_Colors">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_DefaultAppIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon144">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon192">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon24">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage426">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage470">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage640">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_Strings">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DebugSymbols">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyFramework">
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="DependencyPackage">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="File">
+                    <Platform Name="Android">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectAndroidManifest">
+                    <Platform Name="Android">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXDebug"/>
+                <DeployClass Name="ProjectOSXEntitlements"/>
+                <DeployClass Name="ProjectOSXInfoPList"/>
+                <DeployClass Name="ProjectOSXResource">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Linux64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSEntitlements"/>
+                <DeployClass Name="ProjectiOSInfoPList"/>
+                <DeployClass Name="ProjectiOSLaunchScreen"/>
+                <DeployClass Name="ProjectiOSResource">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iOS_AppStore1024">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_AppIcon152">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_AppIcon167">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_LaunchDark2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Notification40">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Setting58">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_SpotLight80">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_AppIcon120">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_AppIcon180">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch3x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_LaunchDark2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_LaunchDark3x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Notification40">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Notification60">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Setting58">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Setting87">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Spotlight120">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Spotlight80">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+            </Deployment>
+            <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="Android64">False</Platform>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+</Project>
